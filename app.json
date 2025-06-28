@@ -1,16 +1,19 @@
 {
   "expo": {
-    "name": "lig-4-connect",
-    "slug": "lig-4-connect",
+    "name": "star-wars-daily-phrase",
+    "slug": "star-wars-daily-phrase",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "lig-4-connect",
+    "scheme": "star-wars-daily-phrase",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.lig4connect"
+      "bundleIdentifier": "com.anonymous.starwarsdailyphrase",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -18,7 +21,7 @@
         "backgroundColor": "#1a1a21"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.anonymous.lig4connect"
+      "package": "com.anonymous.starwarsdailyphrase"
     },
     "web": {
       "bundler": "metro",
@@ -44,8 +47,9 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "b5edd5c3-c83b-4599-9248-739f9ba0a748"
+        "projectId": "50709ae8-d891-404a-8a31-eca5c46ea94b"
       }
-    }
+    },
+    "owner": "devhenrique"
   }
 }
