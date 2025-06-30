@@ -53,11 +53,16 @@ export const useHome = () => {
     setRevealed(true);
   };
 
+  const goBack = () => {
+    setRevealed(false);
+  };
+
   return {
     revealed,
     timeLeft,
     quote,
     color,
     handleReveal,
+    goBack
   }
 }
