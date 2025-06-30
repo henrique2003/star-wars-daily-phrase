@@ -11,7 +11,8 @@
     "lint": "expo lint",
     "build:ios": "eas build --platform ios --profile production",
     "submit:ios": "eas submit --platform ios --profile production",
-    "publish:ios": "npm run build:ios && npm run submit:ios"
+    "publish:ios": "npm run build:ios && npm run submit:ios",
+    "workflow:ios": "npx eas-cli@latest workflow:run ./.eas/workflows/publish-ios.yml"
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.4.1",
