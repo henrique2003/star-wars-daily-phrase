@@ -9,8 +9,8 @@
     "ios": "expo run:ios",
     "web": "expo start --web",
     "lint": "expo lint",
-    "build:ios": "eas-cli build --platform ios --profile production",
-    "submit:ios": "eas submit -p ios",
+    "build:ios": "eas build --platform ios --profile production",
+    "submit:ios": "eas submit --platform ios --profile production",
     "publish:ios": "npm run build:ios && npm run submit:ios"
   },
   "dependencies": {
