@@ -10,7 +10,8 @@
     "web": "expo start --web",
     "lint": "expo lint",
     "build:ios": "eas-cli build --platform ios --profile production",
-    "submit:ios": "eas submit -p ios"
+    "submit:ios": "eas submit -p ios",
+    "publish:ios": "npm run build:ios && npm run submit:ios"
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.4.1",
