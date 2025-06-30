@@ -1,58 +1,16 @@
 import { banner, logoTransparent } from "@/src/assets";
-import { quotes } from "@/src/conts/quotes";
-import React, { useEffect, useMemo, useState } from "react";
 import { Text, View, TouchableOpacity, ImageBackground, SafeAreaView, Image } from "react-native";
 import Animated, { FadeIn } from "react-native-reanimated";
-
-type TimeLeft = {
-  hours: number;
-  minutes: number;
-  seconds: number;
-};
+import { useHome } from "./hook";
 
 export const Home: React.FC = () => {
-  const [revealed, setRevealed] = useState(false);
-  const [lastRevealDate, setLastRevealDate] = useState<string | null>(null);
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>(getTimeLeftUntilMidnight());
-  const todayKey = new Date().toDateString();
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const quote = useMemo(() => getQuoteOfTheDay(), [todayKey]);
-  const color = useMemo(() => quote.color, [quote.color]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const newTimeLeft = getTimeLeftUntilMidnight();
-      setTimeLeft(newTimeLeft);
-
-      if (
-        newTimeLeft.hours === 0 &&
-        newTimeLeft.minutes === 0 &&
-        newTimeLeft.seconds === 0
-      ) {
-        setRevealed(false);
-        setLastRevealDate(null);
-      }
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    const today = new Date().toDateString();
-
-    if (lastRevealDate && lastRevealDate !== today) {
-      setRevealed(false);
-      setLastRevealDate(null);
-    }
-  }, [lastRevealDate]);
-
-  const handleReveal = () => {
-    const today = new Date().toDateString();
-
-    setLastRevealDate(today);
-    setRevealed(true);
-  };
+  const {
+    color,
+    handleReveal,
+    revealed,
+    timeLeft,
+    quote
+  } = useHome()
 
   return (
     <SafeAreaView className="flex-1 bg-black">
@@ -105,21 +63,3 @@ export const Home: React.FC = () => {
     </SafeAreaView>
   );
 };
-
-function getTimeLeftUntilMidnight(): TimeLeft {
-  const now = new Date();
-  const midnight = new Date();
-  midnight.setHours(24, 0, 0, 0);
-  const diffMs = midnight.getTime() - now.getTime();
-
-  const hours = Math.floor(diffMs / 1000 / 60 / 60);
-  const minutes = Math.floor((diffMs / 1000 / 60) % 60);
-  const seconds = Math.floor((diffMs / 1000) % 60);
-
-  return { hours, minutes, seconds };
-}
-
-function getQuoteOfTheDay() {
-  const day = new Date().getDate();
-  return quotes[day % quotes.length];
-}
